@@ -1,1 +1,1 @@
-Example page
+Example Page
