@@ -1,0 +1,25 @@
+name: test
+on:
+    workflow_call:
+    push:
+        branches:
+            - "develop"
+            - "feature/*"
+            - "bug/*"
+    pull_request:
+        branches:
+            - "main"
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-node@v6
+              with:
+                  node-version-file: ".nvmrc"
+                  cache: "npm"
+            - run: npm ci --include=dev
+            - id: test-lint
+              run: npm run lint
+            - id: test-build
+              run: npm run build
