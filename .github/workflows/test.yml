@@ -21,5 +21,7 @@ jobs:
             - run: npm ci --include=dev
             - id: test-lint
               run: npm run lint
+            - id: test-unit
+              run: npm test
             - id: test-build
               run: npm run build
