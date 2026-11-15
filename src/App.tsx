@@ -13,7 +13,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     description
 }) => (
     <div className="feature-card">
-        <div className="feature-icon-box">{icon}</div>
+        <div className="feature-icon-box" aria-hidden="true">
+            {icon}
+        </div>
         <h3>{title}</h3>
         <p>{description}</p>
     </div>
@@ -40,27 +42,26 @@ export const App: React.FC = () => {
     };
 
     return (
-        <div className="page-container">
+        <div id="top" className="page-container">
             {/* Navigation */}
             <header className="navbar">
                 <div className="section-wrapper nav-content">
-                    <a href="#" className="logo">
+                    <a href="#top" className="logo">
                         <span className="logo-dot"></span>
                         example page
                     </a>
 
                     <div className="nav-right">
-                        <ul className="nav-links">
-                            <li>
-                                <a href="#features">Features</a>
-                            </li>
-                            <li>
-                                <a href="#about">About</a>
-                            </li>
-                            <li>
-                                <a href="#pricing">Pricing</a>
-                            </li>
-                        </ul>
+                        <nav aria-label="Main navigation">
+                            <ul className="nav-links">
+                                <li>
+                                    <a href="#features">The examples</a>
+                                </li>
+                                <li>
+                                    <a href="#cta">Possibilities</a>
+                                </li>
+                            </ul>
+                        </nav>
 
                         <button
                             className="theme-toggle-btn"
@@ -71,6 +72,7 @@ export const App: React.FC = () => {
                             {theme === "light" ? (
                                 /* Moon Icon */
                                 <svg
+                                    aria-hidden="true"
                                     width="20"
                                     height="20"
                                     viewBox="0 0 24 24"
@@ -85,6 +87,7 @@ export const App: React.FC = () => {
                             ) : (
                                 /* Sun Icon */
                                 <svg
+                                    aria-hidden="true"
                                     width="20"
                                     height="20"
                                     viewBox="0 0 24 24"
@@ -108,7 +111,7 @@ export const App: React.FC = () => {
                         </button>
 
                         <a href="#cta" className="btn btn-primary">
-                            Get Started
+                            Find your example
                         </a>
                     </div>
                 </div>
@@ -118,21 +121,25 @@ export const App: React.FC = () => {
                 {/* Hero Section */}
                 <section className="hero-section">
                     <div className="section-wrapper">
-                        <span className="hero-badge">Thoughtful Design</span>
+                        <span className="hero-badge">
+                            A world of possibility. By example.
+                        </span>
                         <h1 className="hero-title">
-                            A calmer approach to building for the web
+                            A Better Way to <br />{" "}
+                            Experience <span>Examples.</span>
                         </h1>
                         <p className="hero-subtitle">
-                            Designed to eliminate friction and focus on what
-                            truly matters. Experience a clean, balanced
-                            interface built for clarity in any lighting.
+                            A fresh perspective. A familiar feeling. A place for
+                            examples to become whatever comes next.
+                            Discover a little more of what could be.
                         </p>
                         <div className="hero-actions">
-                            <a href="#cta" className="btn btn-primary">
-                                Start exploring
+                            <a href="#features" className="btn btn-primary">
+                                Explore examples
+                                <span aria-hidden="true">↗</span>
                             </a>
                             <a href="#features" className="btn btn-secondary">
-                                Learn more
+                                Discover the possibilities
                             </a>
                         </div>
                     </div>
@@ -143,12 +150,11 @@ export const App: React.FC = () => {
                     <div className="section-wrapper">
                         <div className="section-header">
                             <h2 className="section-title">
-                                Crafted with intention
+                                Good things begin with an example.
                             </h2>
                             <p className="section-description">
-                                Every detail is sculpted to maintain balance,
-                                comfort, and focus throughout your day and
-                                night.
+                                A little intention. A little imagination.
+                                Room to see things in a new way.
                             </p>
                         </div>
 
@@ -169,8 +175,8 @@ export const App: React.FC = () => {
                                         <path d="m9 12 2 2 4-4" />
                                     </svg>
                                 }
-                                title="Clarity First"
-                                description="Uncluttered spaces and purposeful elements that allow your ideas to breathe and flow naturally."
+                                title="Thoughtful Examples"
+                                description="Considered from the first impression to the finer details. Examples that leave room for your own interpretation."
                             />
 
                             <FeatureCard
@@ -189,8 +195,8 @@ export const App: React.FC = () => {
                                         <polyline points="12 6 12 12 16 14" />
                                     </svg>
                                 }
-                                title="Seamless Adaptability"
-                                description="Automatic system preference detection and persistent theme switching for low-light environments."
+                                title="Seamless Experience"
+                                description="From one example to the next, let curiosity lead the way. A natural invitation to keep exploring."
                             />
 
                             <FeatureCard
@@ -208,8 +214,8 @@ export const App: React.FC = () => {
                                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                                     </svg>
                                 }
-                                title="Quiet Elegance"
-                                description="Soft charcoal and muted sage tones engineered to eliminate glare and eye fatigue."
+                                title="Built for Possibility"
+                                description="An example is only the beginning. Imagine where it could take you, and make space for what comes next."
                             />
                         </div>
                     </div>
@@ -219,13 +225,20 @@ export const App: React.FC = () => {
                 <section id="cta" className="highlight-section">
                     <div className="section-wrapper">
                         <div className="highlight-box">
-                            <h2>Ready to experience simple?</h2>
+                            <span className="eyebrow">
+                                YOUR NEXT CHAPTER
+                            </span>
+                            <h2>
+                                Every possibility starts with an example.
+                            </h2>
                             <p>
-                                Join thousands of creators who have chosen a
-                                clearer, quieter approach to their workflow.
+                                You don’t need the whole picture to find a little
+                                inspiration. Start with an example. See where
+                                it leads.
                             </p>
-                            <a href="#" className="btn btn-primary">
-                                Get started today
+                            <a href="#features" className="btn btn-primary">
+                                Find your starting point
+                                <span aria-hidden="true">↗</span>
                             </a>
                         </div>
                     </div>
@@ -235,19 +248,24 @@ export const App: React.FC = () => {
             {/* Footer */}
             <footer className="footer">
                 <div className="section-wrapper footer-content">
-                    <p className="footer-copy">
-                        © {new Date().getFullYear()} example page. All rights
-                        reserved.
-                    </p>
+                    <div>
+                        <p className="footer-tagline">
+                            A little inspiration. An open invitation.
+                        </p>
+                        <p className="footer-copy">
+                            © {new Date().getFullYear()} example page.
+                            All rights reserved.
+                        </p>
+                    </div>
                     <ul className="footer-nav">
                         <li>
-                            <a href="#">Privacy Policy</a>
+                            <a href="#features">Explore</a>
                         </li>
                         <li>
-                            <a href="#">Terms of Service</a>
+                            <a href="#cta">Imagine</a>
                         </li>
                         <li>
-                            <a href="#">Contact</a>
+                            <a href="#top">Back to the beginning ↑</a>
                         </li>
                     </ul>
                 </div>

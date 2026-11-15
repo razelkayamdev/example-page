@@ -31,14 +31,14 @@ describe("App", () => {
         expect(
             screen.getByRole("heading", {
                 level: 1,
-                name: "A calmer approach to building for the web"
+                name: "A Better Way to Experience Examples."
             })
         ).toBeTruthy();
 
         for (const name of [
-            "Clarity First",
-            "Seamless Adaptability",
-            "Quiet Elegance"
+            "Thoughtful Examples",
+            "Seamless Experience",
+            "Built for Possibility"
         ]) {
             expect(
                 screen.getByRole("heading", { level: 3, name })
@@ -50,15 +50,42 @@ describe("App", () => {
         render(<App />);
 
         for (const [name, target] of [
-            ["Features", "features"],
-            ["Learn more", "features"],
-            ["Get Started", "cta"],
-            ["Start exploring", "cta"]
+            ["The examples", "features"],
+            ["Discover the possibilities", "features"],
+            ["Find your example", "cta"],
+            ["Explore examples", "features"]
         ]) {
             const link = screen.getByRole("link", { name });
             expect(link.getAttribute("href")).toBe(`#${target}`);
             expect(document.getElementById(target)).not.toBeNull();
         }
+    });
+
+    it("gives every navigation and CTA link an existing destination", () => {
+        render(<App />);
+
+        for (const link of screen.getAllByRole("link")) {
+            const href = link.getAttribute("href");
+            expect(href).toMatch(/^#.+/);
+            expect(document.getElementById(href!.slice(1))).not.toBeNull();
+        }
+        expect(
+            screen.getByRole("heading", {
+                name: "Every possibility starts with an example."
+            })
+        ).toBeTruthy();
+        expect(
+            screen.getByText("A little inspiration. An open invitation.")
+        ).toBeTruthy();
+    });
+
+    it("falls back to the system theme for an invalid saved value", () => {
+        localStorage.setItem("theme", "unknown");
+        mockSystemTheme("dark");
+        render(<App />);
+        expect(document.documentElement.getAttribute("data-theme")).toBe(
+            "dark"
+        );
     });
 
     it.each(["light", "dark"] as const)(
