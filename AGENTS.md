@@ -14,12 +14,15 @@
 - `npm run build`: run TypeScript project checks (`tsc -b`) and build to `dist/`.
 - `npm run preview`: serve the built site locally.
 - `npm run prettify`: format the entire repository; avoid unrelated formatting changes. Prettier is invoked through `npx` and is not a declared dependency.
-- No automated test suite or test script is configured. For UI changes, manually verify responsive layouts, light/dark themes, and theme persistence after reload.
-- CI runs lint and build on pushes to `develop`, `feature/*`, and `bug/*`, and on PRs targeting `main`. Pushes to `main` build and deploy `dist/` to GitHub Pages. Preserve Vite's `/example-page/` base path.
+- `npm test`: run the automated test suite with Vitest, React Testing Library, and jsdom. Tests live in `src/App.test.tsx`.
+- `npm run test:watch`: run Vitest in watch mode during development.
+- For UI changes, also manually verify responsive layouts, light/dark themes, and theme persistence after reload.
+- CI runs lint, tests, and build on pushes to `develop`, `feature/*`, and `bug/*`, and on PRs targeting `main`. Pushes to `main` build and deploy `dist/` to GitHub Pages. Preserve Vite's `/example-page/` base path.
 
 ## Engineering principles
 - Prefer simple, maintainable solutions and follow existing patterns and conventions.
-- Use TDD for bug fixes and new behavior where practical; account for the current lack of test tooling.
+- Use TDD for bug fixes and new behavior where practical, using the existing Vitest and React Testing Library setup.
+- All development work must happen on a dedicated feature or bugfix branch. Changes must be tested, committed, and submitted as a GitHub pull request when possible. Never commit directly to main or merge without approval.
 - Keep changes focused; avoid unrelated refactoring.
 - Keep dependencies up to date without unnecessary additions; update the npm lockfile with dependency changes.
 - Before completing work, run relevant tests when available, lint, type checks, and builds; report any failures or checks not run.
